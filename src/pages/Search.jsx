@@ -6,6 +6,7 @@ export default class Search extends React.Component {
   state = {
     isButtonDisable: true,
     inputName: '',
+    artist: {},
   }
 
   enableBtn = () => {
@@ -26,8 +27,17 @@ export default class Search extends React.Component {
     }, this.enableBtn);
   }
 
+  searchArtist = async () => {
+    console.log('deu certo');
+    const { inputName } = this.state;
+    const artistObj = await searchAlbumsAPI(inputName);
+    this.setState({
+      artist: artistObj,
+    });
+  }
+
   render() {
-    const { inputName, isButtonDisable } = this.state;
+    const { inputName, isButtonDisable, artist } = this.state;
     console.log(searchAlbumsAPI(inputName));
     return (
       <div data-testid="page-search">
@@ -47,7 +57,7 @@ export default class Search extends React.Component {
             data-testid="search-artist-button"
             type="button"
             disabled={ isButtonDisable }
-            onClick={ () => searchAlbumsAPI(inputName) }
+            onClick={ this.searchArtist }
           >
             Pesquisar
           </button>
