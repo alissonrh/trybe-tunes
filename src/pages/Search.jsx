@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
-import MusicCard from '../components/MusicCard';
+import ArtistiSearch from '../components/ArtistiSearch';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 
 export default class Search extends React.Component {
@@ -45,22 +45,6 @@ export default class Search extends React.Component {
     });
   }
 
-  /*  handleClick = () => {
-    this.searchArtist();
-    this.teste();
-  }
- */
-  /*   teste = () => {
-    const { artist } = this.state;
-    if (artist.length > 0) {
-      return (
-        <p>
-          {`Resultado de álbuns de: ${artist[0].collectionName}`}
-        </p>);
-    }
-    return <p>Nenhum álbum foi encontrado</p>;
-  } */
-
   render() {
     const { inputName, isButtonDisable, artist, artistName, notFoudMessage } = this.state;
     return (
@@ -92,8 +76,7 @@ export default class Search extends React.Component {
               {`Resultado de álbuns de: ${artistName}`}
             </p>
           ) : (<p>{notFoudMessage}</p>) }
-          {/*  {this.teste()} */}
-          {artist.map((e) => <MusicCard key={ e.collectionId } element={ e } />)}
+          {artist.map((e) => <ArtistiSearch key={ e.collectionId } element={ e } />)}
         </div>
       </div>
     );
