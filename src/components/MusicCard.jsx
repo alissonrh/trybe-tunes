@@ -10,26 +10,27 @@ export default class MusicCard extends React.Component {
   }
 
   async componentDidMount() {
+    console.log(('monte'));
+    this.setState({
+      loading: true,
+    });
     const { album } = this.props;
     const favoritosSongs = await getFavoriteSongs();
-    /*  console.log('teste', favoritosSongs); */
-    /* console.log(favoritosSongs.some((e) => e.trackId === album.trackId)); */
     this.setState({
       isFavorete: favoritosSongs.some((e) => e.trackId === album.trackId),
+      loading: false,
     });
   }
 
   handleChangeFavorite = async (album, isFavorete) => {
+    const { didUpdate } = this.props;
     if (isFavorete) {
       this.setState({
         loading: true,
         isFavorete: false,
       });
       await removeSong(album);
-      this.setState({
-        loading: false,
-      });
-      console.log('teste');
+      didUpdate();
     }
     if (isFavorete === false) {
       this.setState({
@@ -61,17 +62,16 @@ export default class MusicCard extends React.Component {
               <code>audio</code>
               .
             </audio>
-            <label htmlFor="forovita">
+            <label htmlFor="isFavorete">
               Favorita
               <input
-                name="favorita"
+                id="isFavorete"
                 data-testid={ `checkbox-music-${album.trackId}` }
                 type="checkbox"
                 onChange={ () => this.handleChangeFavorite(album, isFavorete) }
                 checked={ isFavorete }
               />
             </label>
-
           </>
         ) }
 
@@ -86,4 +86,9 @@ MusicCard.propTypes = {
     previewUrl: propTypes.string.isRequired,
     trackId: propTypes.number.isRequired,
   }).isRequired,
+  didUpdate: propTypes.func,
+};
+
+MusicCard.defaultProps = {
+  didUpdate: () => {},
 };
