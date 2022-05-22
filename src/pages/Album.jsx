@@ -23,16 +23,17 @@ export default class Album extends React.Component {
     return (
       <div data-testid="page-album">
         <Header />
-        {console.log(album)}
+
         {album.length > 0 && (
           <>
             <h3 data-testid="artist-name">{album[0].artistName}</h3>
             <h4 data-testid="album-name">{album[0].collectionName}</h4>
-            {album.filter((e) => e.trackName)
-              .map((e) => <MusicCard key={ e.trackName } album={ e } />)}
+            {album.filter((e) => e.trackId)
+              .map((e) => (<MusicCard
+                key={ e.trackId }
+                album={ e }
+              />))}
           </>) }
-        {/*  <h3 data-testid="artist-name">{`${album[0].artistName}`}</h3>
-          <h4 data-testid="album-name">{`${album[0].collectionName}`}</h4> */}
       </div>
 
     );
