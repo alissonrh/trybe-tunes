@@ -30,7 +30,10 @@ export default class MusicCard extends React.Component {
         isFavorete: false,
       });
       await removeSong(album);
-      didUpdate();
+      await didUpdate();
+      this.setState({
+        loading: false,
+      });
     }
     if (isFavorete === false) {
       this.setState({
