@@ -10,7 +10,6 @@ export default class MusicCard extends React.Component {
   }
 
   async componentDidMount() {
-    console.log(('monte'));
     this.setState({
       loading: true,
     });

@@ -25,7 +25,7 @@ export default class Profile extends React.Component {
         {user === '' ? <Loading /> : (
           <div>
             <p>{user.name}</p>
-            <img data-testid="profile-image" src={ user.image } alt="" />
+            <img data-testid="profile-image" src={ user.image } alt="foto da pessoa" />
             <p>
               {user.description}
             </p>
