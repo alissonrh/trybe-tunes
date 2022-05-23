@@ -30,7 +30,7 @@ export default class ProfileEdit extends React.Component {
   }
 
   handleSubimit = async () => {
-    const { inputName, inputEmail, inputImage, inputDescription, loading } = this.state;
+    const { inputName, inputEmail, inputImage, inputDescription } = this.state;
     this.setState({
       loading: true,
     });
