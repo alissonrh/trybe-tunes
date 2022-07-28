@@ -26,7 +26,7 @@ export default class Login extends React.Component {
     const { isButtonDisable, inputName, enableBtn } = this.props;
     const { loading, redirect } = this.state;
     return (
-      <div data-testid="page-login">
+      <div className="page-login" data-testid="page-login">
         <form>
           <div>
             <label htmlFor="inputName">
